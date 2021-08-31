@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "serverName": {
+            "type": "string",
+            "defaultValue": "srvdb1",
+            "metadata": {
+                "description": "Specify the server name."
+            }
+        },
+        "administratorLogin": {
+            "type": "string",
+            "defaultValue": "denis",
+            "metadata": {
+                "description": "specify admin login"
+            }
+        },
+        "administratorLoginPassword": {
+            "type": "securestring",
+            "defaultValue": "SurfacePro-4",
+            "metadata": {
+                "description": "specify admin pwd"
+            }
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "eastus2",
+            "metadata": {
+                "description": "specify location"
+            }
+        }
+    },
+
+    "variables": {
+    },
+    "resources": [
+        {
+            "apiVersion": "2020-02-02-preview",
+            "type": "Microsoft.Sql/servers",
+            "name": "[parameters('serverName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "administratorLogin": "[parameters('administratorLogin')]",
+                "administratorLoginPassword": "[parameters('administratorLoginPassword')]"
+            }
+        }
+    ]
+}
